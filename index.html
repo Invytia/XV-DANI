@@ -113,15 +113,15 @@
             transform: scale(0.98);
         }
 
-        /* SOBRE AZUL ELEGANTE Y MÁS CLARO */
+        /* SOBRE AZUL CELESTE CLARO */
         .envelope {
             position: relative;
             width: 340px;
             height: 240px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
             border-radius: 0 0 12px 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 15px rgba(255,255,255,0.2);
-            border: 1px solid rgba(125, 211, 252, 0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 15px rgba(255,255,255,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .envelope::before {
@@ -131,12 +131,12 @@
             right: 0;
             width: 0;
             height: 0;
-            border-right: 170px solid #1e40af; 
+            border-right: 170px solid #0284c7; 
             border-top: 120px solid transparent;
-            border-bottom: 120px solid #1e40af;
+            border-bottom: 120px solid #0284c7;
             border-radius: 0 0 12px 0;
             z-index: 2;
-            filter: drop-shadow(-3px 0 8px rgba(0,0,0,0.2));
+            filter: drop-shadow(-3px 0 8px rgba(0,0,0,0.15));
         }
 
         .envelope::after {
@@ -146,12 +146,12 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 170px solid #2563eb; 
+            border-left: 170px solid #0ea5e9; 
             border-top: 120px solid transparent;
-            border-bottom: 120px solid #2563eb;
+            border-bottom: 120px solid #0ea5e9;
             border-radius: 0 0 0 12px;
             z-index: 2;
-            filter: drop-shadow(3px 0 8px rgba(0,0,0,0.2));
+            filter: drop-shadow(3px 0 8px rgba(0,0,0,0.15));
         }
 
         .front-flap {
@@ -162,11 +162,11 @@
             height: 0;
             border-left: 170px solid transparent;
             border-right: 170px solid transparent;
-            border-top: 130px solid #1d4ed8; 
+            border-top: 130px solid #38bdf8; 
             transform-origin: top;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
             z-index: 4;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.25));
         }
 
         .envelope-wrapper.open .front-flap {
@@ -181,15 +181,15 @@
             transform: translateX(-50%);
             width: 65px;
             height: 65px;
-            background: radial-gradient(circle, #bae6fd 0%, #3b82f6 100%);
+            background: radial-gradient(circle, #bae6fd 0%, #0284c7 100%);
             border-radius: 50%;
             z-index: 5;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.8);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.8);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease 0.3s;
-            border: 2px solid rgba(255,255,255,0.4);
+            border: 2px solid rgba(255,255,255,0.6);
         }
 
         /* Icono de Diamante Mejorado */
@@ -213,10 +213,10 @@
             text-align: center;
             font-family: 'Cinzel', serif;
             font-size: 18px;
-            color: var(--main-primary);
+            color: #ffffff;
             letter-spacing: 4px;
             text-transform: uppercase;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
             font-weight: bold;
         }
 
@@ -810,7 +810,7 @@
                 </svg>
             </div>
             <div class="envelope"></div>
-            <div class="envelope-text">Mis XV Años<br><span style="color: #fff; font-size: 18px; letter-spacing: 5px;">Daniela</span></div>
+            <div class="envelope-text">Mis XV Años<br><span style="font-size: 18px; letter-spacing: 5px;">Daniela</span></div>
             <div class="hint-text">Toca el sello para abrir</div>
         </div>
     </div>
@@ -1072,7 +1072,7 @@
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-light); padding: 0 15px; margin-bottom: 20px; line-height: 1.5;">
                         Ayúdanos a conservar los mejores recuerdos de este día. Sube las fotos y videos que tomes durante el evento a nuestra carpeta compartida.
                     </div>
-                    <a href="https://drive.google.com/drive/folders/1bfHfAzITIakdonqu3O2r0nTtQZPsqBaR?usp=sharing" target="_blank" class="btn-gold" style="width: auto;">
+                    <a href="https://photos.app.goo.gl/D3TfVCM3TSKd1Bp66" target="_blank" class="btn-gold" style="width: auto;">
                         Subir mis Fotos
                     </a>
                 </div>
