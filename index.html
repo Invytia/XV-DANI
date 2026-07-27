@@ -7,14 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Azul Elegante */
-            --bg-dark: #030a14;
-            --main-primary: #3b82f6; 
-            --main-secondary: #1e3a8a; 
+            /* Paleta Azul Clara y Elegante */
+            --bg-dark: #0f172a;
+            --main-primary: #7dd3fc; /* Azul celeste muy claro y brillante */
+            --main-secondary: #0284c7; 
             --text-light: #ffffff; 
-            --text-muted: #cbd5e1; 
-            --magic-glow: rgba(59, 130, 246, 0.5);
-            --particle-glow: rgba(96, 165, 250, 0.7);
+            --text-muted: #e2e8f0; 
+            --magic-glow: rgba(125, 211, 252, 0.6);
+            --particle-glow: rgba(186, 230, 253, 0.8);
         }
 
         * {
@@ -33,20 +33,26 @@
             scroll-behavior: smooth;
         }
 
-        /* Animaciones de Entrada (Scroll) */
+        /* Animaciones de Entrada Suaves y Escaladas */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: opacity, transform;
         }
 
         .animate-on-scroll.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* Capa de Fondo Fija */
+        /* Efecto de Brillo Continuo para Títulos */
+        @keyframes textShine {
+            0% { text-shadow: 0 0 10px rgba(125,211,252,0.3); }
+            100% { text-shadow: 0 0 20px rgba(125,211,252,0.8), 0 0 30px rgba(125,211,252,0.5); }
+        }
+
+        /* Capa de Fondo Fija con mayor visibilidad */
         #fixed-bg {
             position: fixed;
             top: 0;
@@ -59,12 +65,13 @@
             opacity: 0;
             transition: opacity 1.5s ease-out 0.6s;
         }
-        /* Capa de oscurecimiento suave sobre el fondo */
+        
+        /* Overlay mucho más claro para que se vea el fondo */
         #fixed-bg::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 10, 20, 0.75);
+            background: rgba(15, 23, 42, 0.35); /* Transparencia clara */
         }
 
         body.content-active #fixed-bg {
@@ -78,9 +85,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Se aplica el mismo fondo con un overlay oscuro */
-            background: linear-gradient(rgba(3, 10, 20, 0.8), rgba(3, 10, 20, 0.9)), url('assets/fondo.jpg') no-repeat center center;
+            background: rgba(15, 23, 42, 0.6) url('assets/fondo.jpg') no-repeat center center;
             background-size: cover;
+            backdrop-filter: blur(8px);
             z-index: 1000;
             display: flex;
             justify-content: center;
@@ -99,22 +106,22 @@
             position: relative;
             cursor: pointer;
             transform: scale(0.9);
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .envelope-wrapper:hover {
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
 
-        /* SOBRE AZUL MÁS HERMOSO */
+        /* SOBRE AZUL ELEGANTE Y MÁS CLARO */
         .envelope {
             position: relative;
             width: 340px;
             height: 240px;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.05);
-            border: 1px solid rgba(96, 165, 250, 0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 15px rgba(255,255,255,0.2);
+            border: 1px solid rgba(125, 211, 252, 0.6);
         }
 
         .envelope::before {
@@ -124,12 +131,12 @@
             right: 0;
             width: 0;
             height: 0;
-            border-right: 170px solid #1e293b; 
+            border-right: 170px solid #1e40af; 
             border-top: 120px solid transparent;
-            border-bottom: 120px solid #1e293b;
-            border-radius: 0 0 8px 0;
+            border-bottom: 120px solid #1e40af;
+            border-radius: 0 0 12px 0;
             z-index: 2;
-            filter: drop-shadow(-5px 0 10px rgba(0,0,0,0.3));
+            filter: drop-shadow(-3px 0 8px rgba(0,0,0,0.2));
         }
 
         .envelope::after {
@@ -139,12 +146,12 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 170px solid #233147; 
+            border-left: 170px solid #2563eb; 
             border-top: 120px solid transparent;
-            border-bottom: 120px solid #233147;
-            border-radius: 0 0 0 8px;
+            border-bottom: 120px solid #2563eb;
+            border-radius: 0 0 0 12px;
             z-index: 2;
-            filter: drop-shadow(5px 0 10px rgba(0,0,0,0.3));
+            filter: drop-shadow(3px 0 8px rgba(0,0,0,0.2));
         }
 
         .front-flap {
@@ -155,11 +162,11 @@
             height: 0;
             border-left: 170px solid transparent;
             border-right: 170px solid transparent;
-            border-top: 130px solid #172554; 
+            border-top: 130px solid #1d4ed8; 
             transform-origin: top;
-            transition: transform 0.6s ease 0.2s;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
             z-index: 4;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.4));
         }
 
         .envelope-wrapper.open .front-flap {
@@ -172,26 +179,26 @@
             top: 110px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, #60a5fa 0%, #1e3a8a 100%);
+            width: 65px;
+            height: 65px;
+            background: radial-gradient(circle, #bae6fd 0%, #3b82f6 100%);
             border-radius: 50%;
             z-index: 5;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.5);
-            transition: transform 0.4s ease, opacity 0.4s ease 0.4s;
-            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.8);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease 0.3s;
+            border: 2px solid rgba(255,255,255,0.4);
         }
 
-        /* Icono de Diamante en el sello */
+        /* Icono de Diamante Mejorado */
         .wax-seal svg {
-            width: 32px;
-            height: 32px;
-            fill: #fff;
+            width: 36px;
+            height: 36px;
+            color: #ffffff;
             opacity: 0.95;
-            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
 
         .envelope-wrapper.open .wax-seal {
@@ -201,29 +208,30 @@
 
         .envelope-text {
             position: absolute;
-            bottom: -55px;
+            bottom: -65px;
             width: 100%;
             text-align: center;
             font-family: 'Cinzel', serif;
-            font-size: 16px;
+            font-size: 18px;
             color: var(--main-primary);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
             font-weight: bold;
         }
 
         .hint-text {
             position: absolute;
-            bottom: -85px;
+            bottom: -95px;
             width: 100%;
             text-align: center;
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
+            font-size: 14px;
             color: #ffffff;
-            letter-spacing: 1px;
-            opacity: 0.8;
+            letter-spacing: 2px;
+            opacity: 0.9;
             animation: pulse 2s infinite;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
 
         /* Contenido Principal */
@@ -245,33 +253,42 @@
             transform: translateY(0);
         }
 
+        /* Marco estilo Glassmorphism - Cristal Esmerilado */
         .invitation-frame {
             max-width: 550px;
             width: 100%;
-            border: 2px solid var(--main-primary);
-            padding: 45px 30px;
+            background: rgba(15, 23, 42, 0.45); /* Muy transparente */
+            backdrop-filter: blur(16px); /* Efecto cristal fuerte */
+            border: 1px solid rgba(125, 211, 252, 0.3); /* Borde suave */
+            border-radius: 20px; /* Bordes redondeados modernos */
+            padding: 50px 30px;
             text-align: center;
             position: relative;
-            background: rgba(3, 10, 20, 0.85); 
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-            border-image: linear-gradient(to bottom, var(--main-primary), rgba(59,130,246,0.1), var(--main-primary)) 1;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
             margin-bottom: 40px;
             z-index: 3;
         }
 
-        .lotus-header { margin-bottom: 20px; }
+        .lotus-header { 
+            margin-bottom: 25px; 
+            animation: float-around 4s ease-in-out infinite alternate;
+        }
         .lotus-header svg {
-            width: 75px;
-            height: 75px;
-            fill: var(--main-primary);
-            filter: drop-shadow(0 0 10px var(--magic-glow));
+            width: 70px;
+            height: 70px;
+            color: var(--main-primary);
+            filter: drop-shadow(0 0 12px var(--magic-glow));
+        }
+
+        @keyframes float-header {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
         }
 
         .section-tag {
             font-family: 'Cinzel', serif;
-            font-size: 14px;
-            letter-spacing: 5px;
+            font-size: 15px;
+            letter-spacing: 6px;
             color: var(--text-muted);
             text-transform: uppercase;
             margin-bottom: 15px;
@@ -280,16 +297,16 @@
 
         .main-title {
             font-family: 'Pinyon Script', cursive;
-            font-size: 78px; 
+            font-size: 85px; 
             color: var(--main-primary);
             margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(59, 130, 246, 0.6);
             line-height: 1.1;
+            animation: textShine 3s infinite alternate;
         }
 
         .phrase {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 21px; 
+            font-size: 22px; 
             color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 35px;
@@ -299,32 +316,33 @@
         }
 
         .divider {
-            width: 70px;
+            width: 80px;
             height: 2px;
             background: linear-gradient(to right, transparent, var(--main-primary), transparent);
-            margin: 35px auto;
+            margin: 40px auto;
+            border-radius: 50%;
         }
 
-        .info-block { margin-bottom: 30px; }
+        .info-block { margin-bottom: 35px; }
 
         .location-block { 
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             padding: 10px 0;
         }
 
         .info-label {
             font-family: 'Cinzel', serif;
-            font-size: 14px; 
-            letter-spacing: 3px;
+            font-size: 15px; 
+            letter-spacing: 4px;
             color: var(--main-primary);
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-weight: 700;
         }
 
         .info-value-main {
             font-family: 'Cinzel', serif;
-            font-size: 28px; 
+            font-size: 30px; 
             font-weight: 700;
             color: var(--text-light);
             letter-spacing: 2px;
@@ -332,19 +350,26 @@
 
         .names-list {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 25px; 
+            font-size: 26px; 
             color: var(--text-light);
             margin: 8px 0;
             letter-spacing: 1px;
         }
 
+        /* Fotos con efecto Hover */
         .invitation-photo {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            border: 1px solid rgba(59, 130, 246, 0.5);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.9);
+            border-radius: 12px;
+            border: 1px solid rgba(125, 211, 252, 0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             margin: 25px 0;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+        }
+        
+        .invitation-photo:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), 0 0 20px var(--magic-glow);
         }
 
         /* Cuenta Regresiva */
@@ -359,19 +384,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            border-radius: 8px;
-            padding: 12px;
+            background: rgba(125, 211, 252, 0.1);
+            border: 1px solid rgba(125, 211, 252, 0.4);
+            border-radius: 10px;
+            padding: 15px 12px;
             width: 75px;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.05);
+            backdrop-filter: blur(4px);
         }
 
         .countdown-number {
             font-family: 'Cinzel', serif;
-            font-size: 28px;
+            font-size: 30px;
             color: var(--main-primary);
             font-weight: bold;
+            text-shadow: 0 0 10px var(--magic-glow);
         }
 
         .countdown-label {
@@ -379,7 +406,7 @@
             text-transform: uppercase;
             color: var(--text-muted);
             margin-top: 5px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-weight: 600;
         }
 
@@ -388,10 +415,11 @@
             width: 100%;
             max-width: 320px;
             margin: 0 auto 25px auto;
-            background: rgba(0,0,0,0.6);
+            background: rgba(15, 23, 42, 0.6);
             padding: 20px 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .calendar-month {
@@ -415,7 +443,7 @@
             color: var(--text-muted);
             font-weight: bold;
             padding-bottom: 8px;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            border-bottom: 1px solid rgba(125, 211, 252, 0.3);
         }
 
         .calendar-day {
@@ -425,14 +453,16 @@
             justify-content: center;
             align-items: center;
             aspect-ratio: 1;
+            transition: all 0.3s ease;
         }
 
         .calendar-day.active {
-            background-color: var(--main-primary);
+            background: linear-gradient(135deg, var(--main-primary) 0%, var(--main-secondary) 100%);
             color: #fff;
             border-radius: 50%;
             font-weight: bold;
             box-shadow: 0 0 15px var(--magic-glow);
+            transform: scale(1.1);
         }
 
         .calendar-day.empty { color: transparent; pointer-events: none; }
@@ -441,14 +471,14 @@
         .timeline {
             position: relative;
             max-width: 100%;
-            margin: 30px auto;
+            margin: 40px auto;
             padding: 10px 0;
         }
         .timeline::after {
             content: '';
             position: absolute;
             width: 2px;
-            background-color: var(--main-primary);
+            background: linear-gradient(to bottom, transparent, var(--main-primary), var(--main-primary), transparent);
             top: 0;
             bottom: 0;
             left: 50%;
@@ -456,7 +486,7 @@
             border-radius: 2px;
         }
         .timeline-container {
-            padding: 15px 30px;
+            padding: 15px 35px;
             position: relative;
             width: 50%;
         }
@@ -472,17 +502,24 @@
         .timeline-container::after {
             content: '';
             position: absolute;
-            width: 14px;
-            height: 14px;
-            background-color: var(--bg-dark);
-            border: 2px solid var(--main-primary);
+            width: 16px;
+            height: 16px;
+            background-color: var(--main-primary);
+            border: 3px solid var(--bg-dark);
             top: 50%;
             transform: translateY(-50%) rotate(45deg);
             z-index: 1;
-            box-shadow: 0 0 8px var(--magic-glow);
+            box-shadow: 0 0 12px var(--magic-glow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .timeline-container.left::after { right: -8px; }
-        .timeline-container.right::after { left: -8px; }
+        
+        .timeline-container:hover::after {
+            transform: translateY(-50%) rotate(225deg) scale(1.2);
+            box-shadow: 0 0 20px var(--magic-glow);
+        }
+
+        .timeline-container.left::after { right: -9px; }
+        .timeline-container.right::after { left: -9px; }
         
         .timeline-content {
             padding: 5px 10px;
@@ -492,23 +529,24 @@
             font-family: 'Cinzel', serif;
             font-weight: bold;
             color: var(--main-primary);
-            font-size: 16px;
+            font-size: 17px;
             margin-bottom: 5px;
+            letter-spacing: 1px;
         }
         .desc {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
+            font-size: 21px;
             color: var(--text-light);
         }
 
-        /* Botones Generales */
+        /* Botones Generales Estilo Glass */
         .btn-gold {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(125, 211, 252, 0.15);
             color: #fff;
-            border: 2px solid var(--main-primary);
+            border: 1px solid var(--main-primary);
             padding: 14px 25px;
             font-family: 'Cinzel', serif;
             font-size: 14px; 
@@ -516,19 +554,22 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             margin-top: 15px;
             width: 100%;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
             text-align: center;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-gold:hover {
-            background: var(--main-primary);
+            background: rgba(125, 211, 252, 0.3);
             color: #fff;
-            box-shadow: 0 0 20px var(--magic-glow);
+            box-shadow: 0 0 25px var(--magic-glow);
+            transform: translateY(-2px);
         }
 
         /* Mapas */
@@ -537,15 +578,18 @@
             height: 250px;
             margin-top: 15px;
             margin-bottom: 15px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
+            border: 1px solid rgba(125, 211, 252, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
         .map-container iframe {
             width: 100%;
             height: 100%;
             border: 0;
-            filter: grayscale(40%) invert(90%) hue-rotate(180deg) contrast(110%);
+            filter: grayscale(30%) invert(80%) hue-rotate(190deg) contrast(110%);
         }
 
         /* Formularios */
@@ -560,35 +604,40 @@
 
         .form-input {
             width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(59, 130, 246, 0.5);
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(125, 211, 252, 0.4);
             color: var(--text-light);
             font-family: 'Montserrat', sans-serif;
             font-size: 15px; 
-            border-radius: 4px;
+            border-radius: 8px;
             outline: none;
-            transition: border 0.3s;
+            transition: all 0.3s;
         }
 
-        .form-input:focus { border-color: var(--main-primary); }
-        .form-input::placeholder { color: rgba(212, 197, 197, 0.6); }
+        .form-input:focus { 
+            border-color: var(--main-primary);
+            box-shadow: 0 0 15px rgba(125, 211, 252, 0.3);
+            background: rgba(15, 23, 42, 0.7);
+        }
+        .form-input::placeholder { color: rgba(226, 232, 240, 0.6); }
         select.form-input option { background: var(--bg-dark); color: var(--text-light); padding: 10px; }
-        textarea.form-input { resize: vertical; min-height: 90px; }
+        textarea.form-input { resize: vertical; min-height: 100px; }
 
         /* Ticket Digital Pase VIP */
         .digital-ticket {
-            background: linear-gradient(135deg, #061124 0%, #030812 100%);
+            background: linear-gradient(135deg, rgba(15,23,42,0.8) 0%, rgba(2,6,23,0.9) 100%);
             border: 1px solid var(--main-primary);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 30px 15px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 15px rgba(125,211,252,0.1);
             margin: 0 auto;
             max-width: 320px;
             animation: fadeInTicket 0.8s ease-out forwards;
+            backdrop-filter: blur(10px);
         }
 
         @keyframes fadeInTicket {
@@ -601,11 +650,12 @@
             position: absolute;
             width: 40px;
             height: 40px;
-            background: #030a14; 
+            background: rgba(15, 23, 42, 0.5); /* Coincide con el frame */
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
             border: 1px solid var(--main-primary);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
         .digital-ticket::before { left: -20px; border-left-color: transparent; border-top-color: transparent; border-bottom-color: transparent; }
         .digital-ticket::after { right: -20px; border-right-color: transparent; border-top-color: transparent; border-bottom-color: transparent; }
@@ -617,7 +667,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 20px;
-            border-bottom: 1px dashed rgba(59, 130, 246, 0.4);
+            border-bottom: 1px dashed rgba(125, 211, 252, 0.4);
             padding-bottom: 15px;
             font-weight: 600;
         }
@@ -625,9 +675,9 @@
         .ticket-body { padding: 10px 0; }
         .ticket-footer {
             font-size: 11px;
-            color: #93c5fd;
+            color: #bae6fd;
             margin-top: 20px;
-            border-top: 1px dashed rgba(59, 130, 246, 0.4);
+            border-top: 1px dashed rgba(125, 211, 252, 0.4);
             padding-top: 15px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -651,6 +701,7 @@
             border-radius: 50%;
             pointer-events: none;
             box-shadow: 0 0 15px 4px var(--particle-glow);
+            background-color: #fff;
             animation: float-around infinite ease-in-out;
             opacity: 0;
         }
@@ -662,24 +713,27 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: rgba(3, 10, 20, 0.85);
-            border: 2px solid var(--main-primary);
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--main-primary);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 2000;
             cursor: pointer;
-            box-shadow: 0 0 15px var(--magic-glow);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5), 0 0 15px var(--magic-glow);
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             opacity: 0;
             visibility: hidden;
             transform: scale(0.8);
         }
 
         body.content-active #music-btn { opacity: 1; visibility: visible; transform: scale(1); }
-        #music-btn:hover { background: rgba(59, 130, 246, 0.3); transform: scale(1.1); }
+        #music-btn:hover { 
+            background: rgba(125, 211, 252, 0.3); 
+            transform: scale(1.15) rotate(5deg); 
+        }
         #music-btn svg { width: 28px; height: 28px; fill: #fff; }
 
         @keyframes pulse {
@@ -692,7 +746,7 @@
             0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
             10% { opacity: 0.9; }
             90% { opacity: 0.9; }
-            100% { transform: translateY(-100vh) translateX(30px) scale(1.2); opacity: 0; }
+            100% { transform: translateY(-100vh) translateX(40px) scale(1.3); opacity: 0; }
         }
 
         /* Responsivo */
@@ -702,22 +756,22 @@
             .envelope::after { border-left-width: 150px; border-top-width: 110px; border-bottom-width: 110px; }
             .front-flap { border-left-width: 150px; border-right-width: 150px; border-top-width: 120px; }
             .wax-seal { top: 100px; }
-            .main-title { font-size: 58px; }
-            .invitation-frame { padding: 35px 15px; }
-            .names-list { font-size: 22px; }
-            .countdown-box { width: 60px; }
-            .countdown-number { font-size: 22px; }
+            .main-title { font-size: 60px; }
+            .invitation-frame { padding: 35px 20px; border-radius: 15px; }
+            .names-list { font-size: 23px; }
+            .countdown-box { width: 65px; padding: 12px 8px; }
+            .countdown-number { font-size: 24px; }
             #music-btn { bottom: 20px; right: 20px; width: 50px; height: 50px; }
             #music-btn svg { width: 22px; height: 22px; }
             .calendar-container { padding: 15px 5px; }
             .calendar-grid { font-size: 13px; gap: 2px; }
             
-            /* Ajustes en timeline para asegurar el centro */
-            .timeline-container { padding: 10px 10px; }
-            .time { font-size: 13px; }
-            .desc { font-size: 16px; }
-            .timeline-container.left::after { right: -8px; }
-            .timeline-container.right::after { left: -8px; }
+            /* Ajustes en timeline para asegurar el centro en móviles */
+            .timeline-container { padding: 10px 15px; }
+            .time { font-size: 14px; }
+            .desc { font-size: 18px; }
+            .timeline-container.left::after { right: -9px; }
+            .timeline-container.right::after { left: -9px; }
         }
     </style>
 </head>
@@ -735,9 +789,14 @@
         <div class="envelope-wrapper" onclick="openEnvelope()">
             <div class="front-flap"></div>
             <div class="wax-seal">
-                <!-- Icono de Diamante -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 12l10 10 10-10L12 2z"/>
+                <!-- Icono de Diamante Facetado Elegante -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h12l4 6-10 13L2 9Z"/>
+                    <path d="M11 3v20"/>
+                    <path d="M13 3v20"/>
+                    <path d="M2 9h20"/>
+                    <path d="M6 3l5 6"/>
+                    <path d="M18 3l-5 6"/>
                 </svg>
             </div>
             <div class="envelope"></div>
@@ -751,8 +810,13 @@
         <div class="invitation-frame">
             <div class="lotus-header animate-on-scroll">
                 <!-- Icono principal: Diamante -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 12l10 10 10-10L12 2z"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 3h12l4 6-10 13L2 9Z"/>
+                    <path d="M11 3v20"/>
+                    <path d="M13 3v20"/>
+                    <path d="M2 9h20"/>
+                    <path d="M6 3l5 6"/>
+                    <path d="M18 3l-5 6"/>
                 </svg>
             </div>
 
@@ -896,7 +960,7 @@
                 
                 <div class="divider animate-on-scroll"></div>
 
-                <!-- Hospedaje (Añadido) -->
+                <!-- Hospedaje -->
                 <div class="info-block animate-on-scroll">
                     <div class="info-label">Opción de Hospedaje</div>
                     <div class="names-list">Le Regars Hotel Boutique</div>
@@ -1001,22 +1065,20 @@
 
                 <div class="divider animate-on-scroll"></div>
 
-                <!-- Playlist Colaborativa -->
+                <!-- Playlist Colaborativa con el nuevo enlace -->
                 <div class="info-block animate-on-scroll">
                     <div class="info-label">Nuestra Playlist</div>
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-light); padding: 0 15px; margin-bottom: 20px; line-height: 1.5;">
                         ¡Ayúdanos a crear la mejor música para la fiesta! Agrega tus canciones favoritas a nuestra playlist compartida.
                     </div>
-                    <!-- NOTA: Cambia este link por tu widget real de Spotify. Pongo uno demostrativo según tu comentario original -->
-                    <iframe style="border-radius:12px; margin-top: 15px; border: 1px solid rgba(59, 130, 246, 0.5);" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     
-                    <!-- Botón para la playlist, tal como lo pediste debajo del iframe -->
+                    <iframe data-testid="embed-iframe" style="border-radius:12px; margin-top: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.4);" src="https://open.spotify.com/embed/playlist/3ZzgXn3JDDBJxqNFFHvUOL?utm_source=generator&si=ec2d05a9552f447c" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    
                     <a href="https://drive.google.com/drive/folders/1bfHfAzITIakdonqu3O2r0nTtQZPsqBaR?usp=sharing" target="_blank" class="btn-gold" style="width: auto; margin-top: 25px;">
                         Agrega tus Canciones
                     </a>
                 </div>
 
-                <!-- Foto 7 debaja del botón -->
                 <img src="assets/foto7.jpg" alt="Daniela" class="invitation-photo animate-on-scroll" style="margin-top: 30px;">
 
                 <div class="divider animate-on-scroll"></div>
@@ -1029,9 +1091,13 @@
                         <div class="digital-ticket">
                             <div class="ticket-header">
                                 <!-- Diamante en el pase -->
-                                <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: var(--main-primary); vertical-align: bottom; margin-right: 5px;"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; vertical-align: bottom; margin-right: 5px;">
+                                    <path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3v20"/><path d="M13 3v20"/><path d="M2 9h20"/><path d="M6 3l5 6"/><path d="M18 3l-5 6"/>
+                                </svg>
                                 Pase Digital VIP
-                                <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: var(--main-primary); vertical-align: bottom; margin-left: 5px;"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; vertical-align: bottom; margin-left: 5px;">
+                                    <path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3v20"/><path d="M13 3v20"/><path d="M2 9h20"/><path d="M6 3l5 6"/><path d="M18 3l-5 6"/>
+                                </svg>
                             </div>
                             
                             <div class="ticket-body">
@@ -1094,14 +1160,14 @@
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+                threshold: 0.15 
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Solo animar una vez
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);
@@ -1114,24 +1180,19 @@
         let pasesAsignados = 0;
 
         document.addEventListener("DOMContentLoaded", () => {
-            // Lógica para leer el parámetro '?p=' de la URL
             const urlParams = new URLSearchParams(window.location.search);
             let parametroPases = urlParams.get('p') || urlParams.get('pases');
 
-            // Convertir a número entero
             if (parametroPases && !isNaN(parametroPases)) {
                 pasesAsignados = parseInt(parametroPases);
             }
 
-            // Si hay un número válido de pases
             if (pasesAsignados > 0) {
                 document.getElementById('pases-section').style.display = 'block';
                 document.getElementById('pases-divider').style.display = 'block';
                 
-                // Actualizar el número gigante en el boleto
                 document.getElementById('ticket-count').innerText = pasesAsignados + (pasesAsignados === 1 ? " PASE" : " PASES");
                 
-                // Limitar el input del RSVP al número máximo del link
                 const rsvpGuestsInput = document.getElementById('rsvp-guests');
                 rsvpGuestsInput.max = pasesAsignados;
                 rsvpGuestsInput.placeholder = `¿Cuántas personas asistirán? (Máximo ${pasesAsignados})`;
@@ -1179,16 +1240,16 @@
             }, 1200);
         }
 
-        // Sistema de Partículas
+        // Sistema de Partículas mejorado (luces más elegantes)
         function createFireflies() {
             const container = document.getElementById('fireflies-container');
-            const count = 40; 
+            const count = 45; 
             
             for (let i = 0; i < count; i++) {
                 const firefly = document.createElement('div');
                 firefly.classList.add('firefly');
                 
-                const size = Math.random() * 5 + 2;
+                const size = Math.random() * 4 + 1;
                 const left = Math.random() * 100;
                 const animDuration = Math.random() * 8 + 6;
                 const animDelay = Math.random() * 6;
@@ -1231,7 +1292,6 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
 
-        // Mostrar/Ocultar campo de invitados
         function toggleGuestInput() {
             const status = document.getElementById("rsvp-status").value;
             const guestInput = document.getElementById("rsvp-guests");
@@ -1268,7 +1328,6 @@
                     return;
                 }
                 
-                // Validación estricta para límite de invitados
                 if (pasesAsignados > 0 && parseInt(guests) > pasesAsignados) {
                     alert(`El límite máximo asignado en tu pase es de ${pasesAsignados} persona(s).`);
                     return;
@@ -1279,7 +1338,7 @@
                 message = encodeURIComponent(`¡Hola! Soy ${name}. Lamentablemente no podré asistir a los XV años de Daniela. ¡Muchas gracias por la invitación!`);
             }
 
-            const phone = "525533431579"; // Cambia este número por el correspondiente
+            const phone = "525533431579"; 
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
@@ -1292,7 +1351,7 @@
                 alert("Por favor, ingresa tu nombre y un mensaje.");
                 return;
             }
-            const phone = "525533431579"; // Cambia este número por el correspondiente
+            const phone = "525533431579"; 
             const message = encodeURIComponent(`Hola Daniela, soy ${name}. Te dejo este mensaje con mucho cariño:\n\n"${wish}"`);
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
