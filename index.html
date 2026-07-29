@@ -91,7 +91,8 @@
             z-index: 1000;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Subimos el sobre hacia la parte superior */
+            padding-top: 12vh; /* Margen desde la parte de arriba */
             transition: opacity 1.2s ease-in-out, visibility 1.2s;
             overflow: hidden;
         }
@@ -213,10 +214,10 @@
             text-align: center;
             font-family: 'Cinzel', serif;
             font-size: 18px;
-            color: #ffffff;
+            color: #0284c7; /* Azul a juego con el sobre */
             letter-spacing: 4px;
             text-transform: uppercase;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 4px rgba(255,255,255,0.8); /* Brillo blanco para contraste sobre fondo claro */
             font-weight: bold;
         }
 
@@ -227,11 +228,11 @@
             text-align: center;
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
-            color: #ffffff;
+            color: #0284c7; /* Azul a juego con el sobre */
             letter-spacing: 2px;
             opacity: 0.9;
             animation: pulse 2s infinite;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 1px 3px rgba(255,255,255,0.8); /* Brillo blanco para contraste */
         }
 
         /* Contenido Principal */
