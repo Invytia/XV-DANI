@@ -328,6 +328,9 @@
         .location-block { 
             margin-bottom: 35px;
             padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .info-label {
@@ -932,7 +935,7 @@
 
                 <div class="info-block animate-on-scroll" style="margin-top: 20px;">
                     <div class="info-label">Y mis padrinos</div>
-                    <div class="names-list">Oscar Benitez</div>
+                    <div class="names-list">Oscar Benítez</div>
                     <div class="names-list">Valeria Sandoval</div>
                 </div>
 
@@ -940,9 +943,11 @@
 
                 <div class="divider animate-on-scroll"></div>
 
-                <!-- Ceremonia sin bloque encapsulado -->
                 <div class="location-block animate-on-scroll">
-                    <div class="info-label">Ceremonia Religiosa</div>
+                    <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; fill: var(--main-primary); margin: 10px 0; filter: drop-shadow(0 0 8px var(--magic-glow));">
+                        <path d="M12 2l-6 6v3h2v10h3v-5h2v5h3V11h2V8l-6-6zm-1 3v2H9v2h2v2h2v-2h2V7h-2V5h-2z"/>
+                    </svg>
+                    <div class="info-label" style="font-size: 24px; margin-bottom: 20px;">Ceremonia Religiosa</div>
                     <img src="assets/ceremonia.jpg" alt="Iglesia" class="invitation-photo" style="margin: 15px 0;">
                     <div class="names-list">Parroquia del Señor del Barrio</div>
                     <div class="names-list" style="font-size: 24px; color: var(--main-primary); margin: 15px 0; font-weight: bold;">1:00 p.m.</div>
@@ -956,9 +961,11 @@
 
                 <div class="divider animate-on-scroll"></div>
 
-                <!-- Recepción sin bloque encapsulado -->
                 <div class="location-block animate-on-scroll">
-                    <div class="info-label">Recepción</div>
+                    <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; fill: var(--main-primary); margin: 10px 0; filter: drop-shadow(0 0 8px var(--magic-glow));">
+                        <path d="M21 3H3v2l8 8v7H6v2h12v-2h-5v-7l8-8V3zm-9.5 8L6 5h12l-5.5 6z"/>
+                    </svg>
+                    <div class="info-label" style="font-size: 24px; margin-bottom: 20px;">Recepción</div>
                     <img src="assets/recepcion.jpg" alt="Salón" class="invitation-photo" style="margin: 15px 0;">
                     <div class="names-list">Salón de eventos Sara</div>
                     <div class="names-list" style="font-size: 24px; color: var(--main-primary); margin: 15px 0; font-weight: bold;">3:00 p.m.</div>
@@ -1039,6 +1046,9 @@
                 <div class="divider animate-on-scroll"></div>
 
                 <div class="info-block animate-on-scroll">
+                    <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; fill: var(--main-primary); margin: 10px 0; filter: drop-shadow(0 0 8px var(--magic-glow));">
+                        <path d="M21 7L13 11V13L21 17V7ZM3 7L11 11V13L3 17V7ZM12 14C10.9 14 10 13.1 10 12C10 10.9 10.9 10 12 10C13.1 10 14 10.9 14 12C14 13.1 13.1 14 12 14Z"/>
+                    </svg>
                     <div class="info-label">Código de Vestimenta</div>
                     <div class="info-value-main" style="font-size: 26px; margin-bottom: 12px;">Formal</div>
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text-muted); padding: 0 10px; line-height: 1.6;">
@@ -1066,7 +1076,7 @@
                 <div class="info-block animate-on-scroll">
                     <div class="info-label">Captura el Momento</div>
                     <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; fill: var(--main-primary); margin: 10px 0; filter: drop-shadow(0 0 8px var(--magic-glow));">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm16 2H4v1.97l8 4.66 8-4.66V6zm0 12v-8.46l-8 4.66-8-4.66V18h16z"/>
+                        <path d="M4 4h3l2-2h6l2 2h3c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 3c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/>
                     </svg>
                     <div class="info-value-main" style="font-size: 22px; margin-bottom: 10px;">Galería en Vivo</div>
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-light); padding: 0 15px; margin-bottom: 20px; line-height: 1.5;">
@@ -1081,7 +1091,6 @@
 
                 <div class="divider animate-on-scroll"></div>
 
-                <!-- Playlist Colaborativa con el nuevo enlace -->
                 <div class="info-block animate-on-scroll">
                     <div class="info-label">Nuestra Playlist</div>
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-light); padding: 0 15px; margin-bottom: 20px; line-height: 1.5;">
